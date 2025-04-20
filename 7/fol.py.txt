@@ -1,0 +1,61 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Mar 18 10:59:08 2025
+
+@author: khanm
+"""
+#Expt-6: Program to implement Fisrt Order Logic.
+#Modeling the Domain
+
+class Student:
+    def __init__(self, name):
+        self.name = name
+        self.courses = []
+
+    def __repr__(self):
+        return f"Student({self.name})"
+
+class Course:
+    def __init__(self, name):
+        self.name = name
+        self.students = []
+
+    def __repr__(self):
+        return f"Course({self.name})"
+
+def enroll_student(student, course):
+    if student not in course.students:
+        course.students.append(student)
+    if course not in student.courses:
+        student.courses.append(course)
+
+def is_enrolled(student, course):
+    return student in course.students
+
+def list_enrolled_students(course):
+    return course.students
+
+def list_student_courses(student):
+    return student.courses
+
+# Example Usage
+# Create some students and courses
+ali = Student("Ali")
+bob = Student("Bob")
+math = Course("Math")
+cs = Course("CS")
+
+# Enroll students in courses
+enroll_student(ali, math)
+enroll_student(bob, cs)
+enroll_student(ali, cs)
+
+# Check if a student is enrolled in a course
+print(f"Is Ali enrolled in Math? {is_enrolled(ali, math)}")
+print(f"Is Bob enrolled in Math? {is_enrolled(bob, math)}")
+
+# List all students enrolled in a course
+print(f"Students enrolled in CS: {list_enrolled_students(cs)}")
+
+# List all courses a student is enrolled in
+print(f"Courses Ali is enrolled in: {list_student_courses(ali)}")
